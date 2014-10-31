@@ -1,0 +1,13 @@
+<h1>Edit Sub</h1>
+
+<form action="<%= sub_url(@sub) %>" method="post">
+  
+  <input type="hidden" name="_method" value="patch">
+  
+ <%= render "form" %>
+ 
+  <input type="submit">
+  
+</form>
+  
+  

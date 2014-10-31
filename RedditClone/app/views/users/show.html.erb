@@ -1,1 +1,5 @@
 <h1><%= @user.user_name %></h1>
+
+<br>
+
+<%= link_to "New Sub", new_user_sub_url(current_user), method: :get %>

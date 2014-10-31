@@ -1,10 +1,17 @@
 class User < ActiveRecord::Base
-  # after_initialize :ensure_session_token
+  after_initialize :ensure_session_token
   
   validates :user_name, :password_digest, presence: true
   validates :user_name, uniqueness: true
   
   attr_reader :password
+  
+  has_many(
+    :subs,
+    class_name: "Sub",
+    foreign_key: :moderator_id,
+    primary_key: :id
+  )
   
   def self.find_by_credentials(user_name, password)
     user = User.find_by_user_name(user_name)
@@ -33,10 +40,10 @@ class User < ActiveRecord::Base
   
   def generate_unique_token_for_field(field)
     begin
-      token = SecureRandom.base64(16)
-    end until !self.class.exists?(field => token)
+      session_token = SecureRandom.base64(16)
+    end until !self.class.exists?(field => session_token)
     
-    token
+    session_token
   end
   
 end
