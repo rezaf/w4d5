@@ -13,6 +13,13 @@ class User < ActiveRecord::Base
     primary_key: :id
   )
   
+  has_many(
+    :posts,
+    class_name: "Post",
+    foreign_key: :author_id,
+    primary_key: :id
+  )
+  
   def self.find_by_credentials(user_name, password)
     user = User.find_by_user_name(user_name)
     

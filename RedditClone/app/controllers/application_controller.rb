@@ -20,6 +20,19 @@ class ApplicationController < ActionController::Base
   end
   
   def verify_moderator
-    redirect_to subs_url unless Sub.find(params[:id]).moderator_id == current_user.id
+    unless Sub.find(params[:id]).moderator_id == current_user.id
+      flash[:errors] = "Must be moderator of this sub to edit"
+      redirect_to subs_url 
+    end
+  end
+  
+  def verify_author
+    post = Post.find(params[:id])
+    post_sub = post.sub
+    
+    unless post.author_id == current_user.id
+      flash[:errors] = "Must be author of this post to edit"
+      redirect_to sub_url(post_sub) 
+    end
   end
 end

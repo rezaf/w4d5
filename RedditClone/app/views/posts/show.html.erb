@@ -1,0 +1,11 @@
+<h2><%= @post.title %></h2>
+
+<%= @post.content %>
+
+<br><br>
+
+<%= link_to "Edit Post", edit_post_url(@post), method: :get %>
+
+<br><br>
+
+<%= link_to "Back to Sub", sub_url(@post.sub_id), method: :get %>

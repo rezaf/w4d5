@@ -1,0 +1,14 @@
+<h1>New Post</h1>
+
+
+<form action="<%= posts_url %>" method="post">
+  
+  <%= render "form" %>
+  
+  <input type="hidden", name="post[sub_id]", value="<%= @sub.id %>">
+  
+  <input type="hidden", name="post[author_id]", value="<%= @author.id %>">
+  
+  <input type="submit">
+  
+</form>

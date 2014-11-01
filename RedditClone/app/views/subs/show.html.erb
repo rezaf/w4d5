@@ -4,8 +4,20 @@
 
 <br><br>
 
+<ol>
+  <% @posts.each do |post| %>
+    <li><%= link_to post.title, post_url(post), method: :get %>
+  <% end %>
+</ol>
+
+<br><br>
+
 <%= link_to "Edit Sub", edit_sub_url(@sub), method: :get %>
 
 <br><br>
 
 <%= link_to "All Subs", subs_url, method: :get %>
+
+<br><br>
+
+<%= link_to "New Post", new_sub_post_url(@sub), method: :get%>
